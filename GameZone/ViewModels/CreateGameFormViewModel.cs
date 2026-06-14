@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace GameZone.ViewModels;
+﻿namespace GameZone.ViewModels;
 
 public class CreateGameFormViewModel
 {
@@ -8,6 +6,7 @@ public class CreateGameFormViewModel
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public IFormFile Cover { get; set; } = default!;
+    [Display(Name = "Category")]
     public int  CategoryId { get; set; }
     public IEnumerable<SelectListItem> Categories { get; set; } = [];
     public List<int> SelectedDevices { get; set; } = [];
