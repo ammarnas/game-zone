@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameZone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260614111810_InitialCreate")]
+    [Migration("20260614125222_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -40,6 +40,58 @@ namespace GameZone.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Adventure"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "RPG"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Strategy"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Sports"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Simulation"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Puzzle"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Horror"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Racing"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Multiplayer"
+                        });
                 });
 
             modelBuilder.Entity("GameZone.Models.Device", b =>
@@ -63,6 +115,38 @@ namespace GameZone.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Devices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Icon = "",
+                            Name = "PC"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Icon = "",
+                            Name = "PlayStation"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Icon = "",
+                            Name = "Xbox"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Icon = "",
+                            Name = "Nintendo Switch"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Icon = "",
+                            Name = "Mobile"
+                        });
                 });
 
             modelBuilder.Entity("GameZone.Models.Game", b =>

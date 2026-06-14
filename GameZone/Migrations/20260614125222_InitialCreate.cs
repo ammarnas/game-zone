@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace GameZone.Migrations
 {
     /// <inheritdoc />
@@ -81,6 +83,35 @@ namespace GameZone.Migrations
                         principalTable: "Games",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Action" },
+                    { 2, "Adventure" },
+                    { 3, "RPG" },
+                    { 4, "Strategy" },
+                    { 5, "Sports" },
+                    { 6, "Simulation" },
+                    { 7, "Puzzle" },
+                    { 8, "Horror" },
+                    { 9, "Racing" },
+                    { 10, "Multiplayer" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Devices",
+                columns: new[] { "Id", "Icon", "Name" },
+                values: new object[,]
+                {
+                    { 1, "", "PC" },
+                    { 2, "", "PlayStation" },
+                    { 3, "", "Xbox" },
+                    { 4, "", "Nintendo Switch" },
+                    { 5, "", "Mobile" }
                 });
 
             migrationBuilder.CreateIndex(
