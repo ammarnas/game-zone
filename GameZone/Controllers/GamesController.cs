@@ -46,6 +46,27 @@ public class GamesController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(CreateGameFormViewModel model)
     {
+        if (!ModelState.IsValid)
+        {
+            model.Categories = _context.Categories
+            .Select(c => new SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = c.Name
+            })
+            .OrderBy(c => c.Text)
+            .ToList();
+
+            model.Devices = _context.Devices
+                .Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = d.Name
+                })
+                .OrderBy(d => d.Text)
+                .ToList();
+             return View(model);
+        }
         return View();
     }
 }
