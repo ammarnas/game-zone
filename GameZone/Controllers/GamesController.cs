@@ -41,4 +41,11 @@ public class GamesController : Controller
         };
         return View(viewModel);
     }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(CreateGameFormViewModel model)
+    {
+        return View();
+    }
 }
