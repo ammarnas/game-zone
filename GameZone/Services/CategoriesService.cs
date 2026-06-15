@@ -12,6 +12,7 @@ public class CategoriesService(ApplicationDbContext dbContext) : ICategoriesServ
                 Text = c.Name
             })
             .OrderBy(c => c.Text)
+            .AsNoTracking()
             .ToList();
     }
 }

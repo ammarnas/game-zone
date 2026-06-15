@@ -6,6 +6,7 @@ builder.Services.AddControllersWithViews();
 // register Services
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<IDevicesService, DevicesService>();
+builder.Services.AddScoped<IGameService, GameService>();
 
 // register the ApplicationDbContext with the connection string from appsettings.json
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 

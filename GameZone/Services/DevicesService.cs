@@ -16,6 +16,7 @@ public class DevicesService(ApplicationDbContext context) : IDevicesService
                     Text = d.Name
                 })
                 .OrderBy(d => d.Text)
+                .AsNoTracking()
                 .ToList();
     }
 }
