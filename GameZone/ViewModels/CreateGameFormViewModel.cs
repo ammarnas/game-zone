@@ -9,6 +9,7 @@ public class CreateGameFormViewModel
     [Display(Name = "Category")]
     public int  CategoryId { get; set; }
     public IEnumerable<SelectListItem> Categories { get; set; } = [];
+    [Display(Name = "Supported Devices")]
     public List<int> SelectedDevices { get; set; } = [];
     public IEnumerable<SelectListItem> Devices { get; set; } = [];
 
