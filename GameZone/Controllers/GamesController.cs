@@ -2,13 +2,16 @@
 
 public class GamesController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDevicesService _devicesService;
+    private readonly ICategoriesService _categoriesService;
 
-    public GamesController(ApplicationDbContext dbContext)
+    public GamesController(
+        IDevicesService devicesService,
+        ICategoriesService categoriesService)
     {
-        _context = dbContext;
+        _devicesService = devicesService;
+        _categoriesService = categoriesService;
     }
-
     public IActionResult Index()
     {
         return View();
@@ -17,27 +20,10 @@ public class GamesController : Controller
 
     public IActionResult Create()
     {
-        var categories = _context.Categories
-            .Select(c => new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = c.Name
-            })
-            .OrderBy(c => c.Text)
-            .ToList();
-
-        var devices = _context.Devices
-            .Select(d => new SelectListItem
-            {
-                Value = d.Id.ToString(),
-                Text = d.Name
-            })
-            .OrderBy(d => d.Text)
-            .ToList();
         CreateGameFormViewModel viewModel = new()
         {
-            Devices = devices,
-            Categories = categories
+            Devices = _devicesService.GetSelectList(),
+            Categories = _categoriesService.GetSelectList()
         };
         return View(viewModel);
     }
@@ -48,24 +34,10 @@ public class GamesController : Controller
     {
         if (!ModelState.IsValid)
         {
-            model.Categories = _context.Categories
-            .Select(c => new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = c.Name
-            })
-            .OrderBy(c => c.Text)
-            .ToList();
+            model.Devices = _devicesService.GetSelectList();
+            model.Categories = _categoriesService.GetSelectList();
 
-            model.Devices = _context.Devices
-                .Select(d => new SelectListItem
-                {
-                    Value = d.Id.ToString(),
-                    Text = d.Name
-                })
-                .OrderBy(d => d.Text)
-                .ToList();
-             return View(model);
+            return View(model);
         }
         return View();
     }
