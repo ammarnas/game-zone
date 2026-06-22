@@ -1,4 +1,5 @@
-﻿global using GameZone.Data;
+﻿global using GameZone.Attributes;
+global using GameZone.Data;
 global using GameZone.Models;
 global using GameZone.Services;
 global using GameZone.Settings;

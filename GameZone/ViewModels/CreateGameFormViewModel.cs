@@ -5,6 +5,7 @@ public class CreateGameFormViewModel
     [MaxLength(250)]
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
+    [AllowedExtensions(FileSettings.AllowedImageExtensions)]
     public IFormFile Cover { get; set; } = default!;
     [Display(Name = "Category")]
     public int  CategoryId { get; set; }
