@@ -41,7 +41,7 @@
                 <input type="file" class="form-control" asp-for="Cover">
                 <span asp-validation-for="Cover" class="text-danger"></span>
                 <small asp-for="Cover" class="form-text text-muted d-block">
-                    Supported formats: .jpg, .jpeg, .png. Max size: 2MB.
+                    Supported formats: @FileSettings.AllowedImageExtensions. Max size: @(FileSettings.MaxImageSizeInMB)MB.
                 </small>
             </div>
             <button type="submit" class="btn btn-light text-black mt-4">Save</button>
