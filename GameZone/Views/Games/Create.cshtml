@@ -38,7 +38,9 @@
             </div>
             <div>
                 <label asp-for="Cover" class="form-label mt-4"></label>
-                <input type="file" class="form-control" asp-for="Cover">
+                <input type="file" class="form-control" asp-for="Cover"
+                    data-rule-extension="@FileSettings.AllowedImageExtensions.Replace(".", string.Empty)"
+                    data-msg-extension="Not allowed Extension">
                 <span asp-validation-for="Cover" class="text-danger"></span>
                 <small asp-for="Cover" class="form-text text-muted d-block">
                     Supported formats: @FileSettings.AllowedImageExtensions. Max size: @(FileSettings.MaxImageSizeInMB)MB.
