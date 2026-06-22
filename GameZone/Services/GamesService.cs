@@ -13,7 +13,7 @@ public class GamesService : IGamesService
     {
         _dbContext = dbContext;
         _webHostEnvironment = webHostEnvironment;
-        _imagesPath = $"{_webHostEnvironment.WebRootPath}/assets/images/games";
+        _imagesPath = $"{_webHostEnvironment.WebRootPath}{FileSettings.ImagesPath}";
     }
 
     public async Task Create(CreateGameFormViewModel model)
@@ -23,9 +23,7 @@ public class GamesService : IGamesService
         var coverPath = Path.Combine(_imagesPath, coverName);
 
         using var stream = File.Create(coverPath);
-
         await model.Cover.CopyToAsync(stream);
-        stream.Dispose();
 
         Game game = new()
         {
