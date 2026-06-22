@@ -1,4 +1,5 @@
 ﻿
+
 namespace GameZone.Services;
 
 public class GamesService : IGamesService
@@ -16,6 +17,12 @@ public class GamesService : IGamesService
         _imagesPath = $"{_webHostEnvironment.WebRootPath}{FileSettings.ImagesPath}";
     }
 
+    public IEnumerable<Game> GetAll()
+    {
+        return _dbContext.Games
+            .AsNoTracking()
+            .ToList();
+    }
     public async Task Create(CreateGameFormViewModel model)
     {
         var coverName = $"{Guid.NewGuid()}{Path.GetExtension(model.Cover.FileName)}";
