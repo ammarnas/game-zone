@@ -1,14 +1,18 @@
-﻿namespace GameZone.Controllers;
+﻿using System.Threading.Tasks;
+
+namespace GameZone.Controllers;
 
 public class GamesController : Controller
 {
     private readonly IDevicesService _devicesService;
     private readonly ICategoriesService _categoriesService;
-
+    private readonly IGamesService _gameService;
     public GamesController(
+        IGamesService gameService,
         IDevicesService devicesService,
         ICategoriesService categoriesService)
     {
+        _gameService = gameService;
         _devicesService = devicesService;
         _categoriesService = categoriesService;
     }
@@ -30,7 +34,7 @@ public class GamesController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(CreateGameFormViewModel model)
+    public async Task<IActionResult> Create(CreateGameFormViewModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -39,6 +43,8 @@ public class GamesController : Controller
 
             return View(model);
         }
-        return View();
+
+        await _gameService.Create(model);
+        return RedirectToAction(nameof(Index));
     }
 }

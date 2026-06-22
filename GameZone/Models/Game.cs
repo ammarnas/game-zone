@@ -10,5 +10,5 @@ public class Game : BaseEntity
     // Navigation properties
     public int CategoryId { get; set; }
     public Category Category { get; set; } = default!;
-    public ICollection<GameDevice> GameDevices { get; set; } = [];
+    public ICollection<GameDevice> Devices { get; set; } = [];
 }
