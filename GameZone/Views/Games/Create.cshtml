@@ -40,7 +40,9 @@
                 <label asp-for="Cover" class="form-label mt-4"></label>
                 <input type="file" class="form-control" asp-for="Cover"
                     data-rule-extension="@FileSettings.AllowedImageExtensions.Replace(".", string.Empty)"
-                    data-msg-extension="Not allowed Extension">
+                    data-msg-extension="Not allowed Extension"
+                    data-rule-filesize="@FileSettings.MaxImageSizeInBytes"
+                    data-msg-filesize="File size must be less than @(FileSettings.MaxImageSizeInMB)MB">
                 <span asp-validation-for="Cover" class="text-danger"></span>
                 <small asp-for="Cover" class="form-text text-muted d-block">
                     Supported formats: @FileSettings.AllowedImageExtensions. Max size: @(FileSettings.MaxImageSizeInMB)MB.
@@ -54,4 +56,10 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $.validator.addMethod('filesize', function(value, element, param){
+            return this.optional(element) || (element.files[0].size <= param)
+        })
+    </script>
 }
