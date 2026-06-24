@@ -16,7 +16,7 @@ public class AllowedExtensionsAttribute : ValidationAttribute
         if(file is not null)
         {
             var extension = Path.GetExtension(file.FileName);
-            var isAllowed = _allowedExtensions.Split('.').Contains(extension, StringComparer.OrdinalIgnoreCase);
+            var isAllowed = _allowedExtensions.Split(',').Contains(extension, StringComparer.OrdinalIgnoreCase);
 
             if (!isAllowed)
             {
