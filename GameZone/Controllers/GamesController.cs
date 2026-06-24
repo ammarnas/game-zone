@@ -6,22 +6,22 @@ public class GamesController : Controller
 {
     private readonly IDevicesService _devicesService;
     private readonly ICategoriesService _categoriesService;
-    private readonly IGamesService _gameService;
+    private readonly IGamesService _gamesService;
     public GamesController(
-        IGamesService gameService,
+        IGamesService gamesService,
         IDevicesService devicesService,
         ICategoriesService categoriesService)
     {
-        _gameService = gameService;
+        _gamesService = gamesService;
         _devicesService = devicesService;
         _categoriesService = categoriesService;
     }
     public IActionResult Index()
     {
-        return View();
+        var games = _gamesService.GetAll();
+        return View(games);
     }
     [HttpGet]
-
     public IActionResult Create()
     {
         CreateGameFormViewModel viewModel = new()
@@ -44,7 +44,7 @@ public class GamesController : Controller
             return View(model);
         }
 
-        await _gameService.Create(model);
+        await _gamesService.Create(model);
         return RedirectToAction(nameof(Index));
     }
 }
